@@ -26,9 +26,9 @@ expenses.forEach(item => {
     const li = document.createElement('li');
     li.innerHTML = `
         <span><strong>￼{item.category})</span>
-        <span>${item.amount} Kč</span>
+        <span>$${item.amount}</span>
     `;
     expenseList.appendChild(li);
 });
 
-totalAmountDisplay.textContent = `${total} Kč`;}
+totalAmountDisplay.textContent = `$${total}`;}
