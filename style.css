@@ -1,20 +1,148 @@
-* { box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-.container { background: #ffffff; padding: 35px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); width: 380px; }
-h1 { font-size: 22px; color: #1f2937; margin-bottom: 20px; text-align: center; }
-h3 { font-size: 16px; color: #4b5563; margin-bottom: 10px; }
-.balance-card { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
-.balance-card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 500; opacity: 0.9; }
-.balance-card p { font-size: 30px; font-weight: 700; margin: 0; }
-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
-input, select { padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; background-color: #f9fafb; outline: none; transition: all 0.2s; }
-input:focus, select:focus { border-color: #4f46e5; background-color: #fff; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
-button { background-color: #4f46e5; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.1s; }
-button:hover { background-color: #4338ca; }
-button:active { transform: scale(0.98); }
-.expense-list-container { max-height: 160px; overflow-y: auto; padding-right: 4px; }
-.expense-list-container::-webkit-scrollbar { width: 4px; }
-.expense-list-container::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
-#expense-list { list-style: none; padding: 0; margin: 0; }
-#expense-list li { background: #f9fafb; padding: 10px 14px; border: 1px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center; font-size: 14px; border-radius: 8px; margin-bottom: 8px; animation: fadeIn 0.3s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 380px;
+}
+
+h1 {
+    font-size: 22px;
+    color: #1f2937;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 16px;
+    color: #4b5563;
+    margin-bottom: 10px;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.balance-card h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.balance-card p {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+input, select {
+    padding: 12px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f9fafb;
+    outline: none;
+    transition: all 0.2s;
+}
+
+input:focus, select:focus {
+    border-color: #4f46e5;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+button {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #4338ca;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.expense-list-container {
+    max-height: 160px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.expense-list-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.expense-list-container::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+}
+
+#expense-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#expense-list li {
+    background: #f9fafb;
+    padding: 10px 14px;
+    border: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-5px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}

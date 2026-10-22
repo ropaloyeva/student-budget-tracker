@@ -1,34 +1,49 @@
-const form = document.getElementById('expense-form'); const nameInput = document.getElementById('expense-name'); const amountInput = document.getElementById('expense-amount'); const categorySelect = document.getElementById('expense-category'); const expenseList = document.getElementById('expense-list'); const totalAmountDisplay = document.getElementById('total-amount');
+const form = document.getElementById('expense-form');
+const nameInput = document.getElementById('expense-name');
+const amountInput = document.getElementById('expense-amount');
+const categorySelect = document.getElementById('expense-category');
+const expenseList = document.getElementById('expense-list');
+const totalAmountDisplay = document.getElementById('total-amount');
+
 let expenses = [];
-form.addEventListener('submit', function(e) { e.preventDefault();
-const name = nameInput.value;
-const amount = parseFloat(amountInput.value);
-const category = categorySelect.value;
 
-if (!name || isNaN(amount)) return;
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-const expense = {
-    id: Date.now(),
-    name,
-    amount,
-    category
-};
+    const name = nameInput.value;
+    const amount = parseFloat(amountInput.value);
+    const category = categorySelect.value;
 
-expenses.push(expense);
-updateUI();
+    if (!name || isNaN(amount)) return;
 
-nameInput.value = '';
-amountInput.value = '';});
-function updateUI() { expenseList.innerHTML = ''; let total = 0;
-expenses.forEach(item => {
-    total += item.amount;
+    const expense = {
+        id: Date.now(),
+        name,
+        amount,
+        category
+    };
 
-    const li = document.createElement('li');
-    li.innerHTML = `
-        <span><strong>￼{item.category})</span>
-        <span>$${item.amount}</span>
-    `;
-    expenseList.appendChild(li);
+    expenses.push(expense);
+    updateUI();
+
+    nameInput.value = '';
+    amountInput.value = '';
 });
 
-totalAmountDisplay.textContent = `$${total}`;}
+function updateUI() {
+    expenseList.innerHTML = '';
+    let total = 0;
+
+    expenses.forEach(item => {
+        total += item.amount;
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span><strong>${item.name}</strong> (${item.category})</span>
+            <span>$${item.amount}</span>
+        `;
+        expenseList.appendChild(li);
+    });
+
+    totalAmountDisplay.textContent = `$${total}`;
+}
